@@ -9,7 +9,7 @@ interface FieldState {
     builder:IBuilder
     fieldType:string
     onChangeHandler(name: string,value: string): void
-
+    placeholder:string
 }
 class Field extends Component<FieldProps,FieldState> {
     constructor(props:any) {
@@ -22,12 +22,12 @@ class Field extends Component<FieldProps,FieldState> {
     }
    
     render() {
-        const {builder, fieldType}=this.props
+        const {builder, fieldType, placeholder}=this.props
 
          return (
         <div  className="row">
             <div className="col-sm-1 form-lb">{fieldType}</div>
-            <div className="col-sm-4"><input className="form-control form-control-sm" type="text" value={_.get(builder,fieldType+".value","")} name={fieldType+".value"} onChange={this.onChangeHandler} ></input></div>
+            <div className="col-sm-4"><input placeholder={placeholder} className="form-control form-control-sm" type="text" value={_.get(builder,fieldType+".value","")} name={fieldType+".value"} onChange={this.onChangeHandler} ></input></div>
               
         </div>)
     }

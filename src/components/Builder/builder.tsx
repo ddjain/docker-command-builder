@@ -5,6 +5,7 @@ import * as _ from "lodash";
 import { v4 as uuidv4 } from 'uuid';
 import MultiField from '../MultiField/MultiField';
 import Field  from "../Field/Field"
+
 interface BuilderState {
     builder:IBuilder,
     command:string
@@ -21,11 +22,32 @@ class Builder extends Component<BuilderProps,BuilderState> {
                  image: {id:uuidv4(),key:"",value:""} as IPair,
                  container: {id:uuidv4(),key:"",value:""} as IPair,
                  network:{id:uuidv4(),key:"",value:""} as IPair,
-                 ports: [] as IPair[],
-                 volumes:[] as IPair[],
-                 enviornments:[] as IPair[],
+                 ports: [{id:uuidv4(),key:"",value:""} as IPair] as IPair[],
+                 volumes:[{id:uuidv4(),key:"",value:""} as IPair] as IPair[],
+                 enviornments:[{id:uuidv4(),key:"",value:""} as IPair] as IPair[],
             } as IBuilder
         }
+    }
+
+    componentDidMount(){
+        this.mixpanelInit()
+    }
+
+    mixpanelInit =()=>{
+        let userId=localStorage.getItem("userId")
+        let mixpanel= (window as any).mixpanel;
+        debugger
+        if(userId==null){
+            userId=uuidv4()
+            localStorage.setItem("userId",userId)
+        }
+        mixpanel.identify(userId);
+        mixpanel.people.set({ "count": 0 });
+        mixpanel.people.increment("count", 1);
+        mixpanel.track(
+            "App Launched",
+            {}
+        );
     }
     onChangeHandler = (name:string,value:string)=>{
         debugger
@@ -37,7 +59,7 @@ class Builder extends Component<BuilderProps,BuilderState> {
 
     }
     addFieldHandler = (type:string)=>{
-      debugger
+
       let {builder}=this.state
       let fields=_.get(builder,type)
       fields.push({id:uuidv4(),key:"",value:""} as IPair)
@@ -106,15 +128,17 @@ class Builder extends Component<BuilderProps,BuilderState> {
                     <div className="col-sm"><h3>Docker Command Builder</h3></div>
                      
                 </div>
-                <Field builder={builder} fieldType="image" onChangeHandler={this.onChangeHandler}></Field>
+                <Field placeholder="ex: nginx" builder={builder} fieldType="image" onChangeHandler={this.onChangeHandler}></Field>
                 <br/>
-                <Field builder={builder} fieldType="container" onChangeHandler={this.onChangeHandler}></Field>
+                <Field placeholder="ex: webapp" builder={builder} fieldType="container" onChangeHandler={this.onChangeHandler}></Field>
                  <br/>
-                <Field builder={builder} fieldType="network" onChangeHandler={this.onChangeHandler}></Field>
+                <Field placeholder="ex: bridge or host" builder={builder} fieldType="network" onChangeHandler={this.onChangeHandler}></Field>
 
                 <br/>
                 <MultiField builder={builder} fieldType="ports" onChangeHandler={this.onChangeHandler} removeFieldHandler={this.removeFieldHandler} addFieldHandler={this.addFieldHandler}></MultiField>
+                    
                 <br/>
+                
                 <MultiField builder={builder} fieldType="volumes" onChangeHandler={this.onChangeHandler} removeFieldHandler={this.removeFieldHandler} addFieldHandler={this.addFieldHandler}></MultiField>
                 <br/>
                 <MultiField builder={builder} fieldType="enviornments" onChangeHandler={this.onChangeHandler} removeFieldHandler={this.removeFieldHandler} addFieldHandler={this.addFieldHandler}></MultiField>

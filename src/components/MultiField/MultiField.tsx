@@ -43,9 +43,12 @@ class MultiField extends Component<MultiFieldProps,MultiFieldState> {
     
     render() {
         const {builder, fieldType}=this.props
+        let placeholderHost=fieldType!=="enviornments"?"Host":"Key"
+        let placeholderContainer=fieldType!=="enviornments"?"Container":"Value"
+        
          return (
             <div>
-                <div className="mg-top row">
+                <div className="mg-top-2 row">
                     <div className="col-sm-2 form-lb"> 
                         {fieldType}
                     </div>
@@ -61,14 +64,14 @@ class MultiField extends Component<MultiFieldProps,MultiFieldState> {
              
               {_.get(builder,fieldType,[]).map((field:IPair,index:number)=>{
                 return(
-                    <div key={field.id} className="mg-top row">
+                    <div key={field.id} className="mg-top-5 row">
                         {/* <div className="col-sm-"> 
                         </div> */}
                         <div className="col-sm-2"> 
-                            <input type="text" className="form-control form-control-sm" value={field.key} name={fieldType+"["+index+"].key"} onChange={this.onChangeHandler} ></input>
+                            <input  placeholder={placeholderHost} type="text" className="form-control form-control-sm" value={field.key} name={fieldType+"["+index+"].key"} onChange={this.onChangeHandler} ></input>
                         </div>
                         <div className="col-sm-2"> 
-                            <input type="text" className="form-control form-control-sm" value={field.value} name={fieldType+"["+index+"].value"} onChange={this.onChangeHandler} ></input>
+                            <input placeholder={placeholderContainer} type="text" className="form-control form-control-sm" value={field.value} name={fieldType+"["+index+"].value"} onChange={this.onChangeHandler} ></input>
                         </div>
                         <div className="col-sm-2"> 
                             <button type="button" onClick={()=>this.removeFieldHandler(fieldType,field)} className="btn btn-danger btn-sm">
@@ -79,6 +82,7 @@ class MultiField extends Component<MultiFieldProps,MultiFieldState> {
  
                 )
             })}
+            <hr className="mt-2 mb-2"></hr>
         </div>
     )
     }

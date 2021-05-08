@@ -3,8 +3,11 @@
     font-weight: bold;
 }
 
-.mg-top{
+.mg-top-2{
     margin-top: 2px;
+}
+.mg-top-5{
+  margin-top: 10px;
 }
 
 .tooltip {
@@ -31,3 +34,4 @@
     visibility: visible;
   }
  
+  

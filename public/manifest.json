@@ -1,6 +1,6 @@
 {
-  "short_name": "React App",
-  "name": "Create React App Sample",
+  "short_name": "Docker command builder",
+  "name": "User interface to build docker command",
   "icons": [
     {
       "src": "favicon.ico",
