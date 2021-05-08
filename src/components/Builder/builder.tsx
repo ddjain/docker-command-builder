@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import { IBuilder } from '../../modals/IBuilder';
 import { IPair } from '../../modals/IPair';
-// import _ from "lodash";
 import * as _ from "lodash";
 import { v4 as uuidv4 } from 'uuid';
 import MultiField from '../MultiField/MultiField';
@@ -19,21 +18,12 @@ class Builder extends Component<BuilderProps,BuilderState> {
         this.state = {
             command:"",
              builder: {
-                 image: {id:uuidv4(),key:"",value:"nginx"} as IPair,
-                 container: {id:uuidv4(),key:"",value:"localapp"} as IPair,
-                 ports: [
-                            {id:uuidv4(),key:"8443",value:"8443"} as IPair,
-                            {id:uuidv4(),key:"8080",value:"8081"} as IPair
-                        ] as IPair[],
-                 volumes:[
-                            {id:uuidv4(),key:"/usr/local/bin",value:"/usr/bin"} as IPair,
-                            {id:uuidv4(),key:"/tmp/local",value:"/usr/local/tmp"} as IPair
-                        ] as IPair[],
-                 enviornments:[
-                            {id:uuidv4(),key:"/usr/local/bin",value:"/usr/bin"} as IPair,
-                            {id:uuidv4(),key:"/tmp/local",value:"/usr/local/tmp"} as IPair
-                        ] as IPair[],
-                        network:{id:uuidv4(),key:"",value:"host"} as IPair,
+                 image: {id:uuidv4(),key:"",value:""} as IPair,
+                 container: {id:uuidv4(),key:"",value:""} as IPair,
+                 network:{id:uuidv4(),key:"",value:""} as IPair,
+                 ports: [] as IPair[],
+                 volumes:[] as IPair[],
+                 enviornments:[] as IPair[],
             } as IBuilder
         }
     }
