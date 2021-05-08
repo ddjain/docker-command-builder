@@ -85,7 +85,7 @@ class Builder extends Component<BuilderProps,BuilderState> {
             }
         }
 
-        if(builder.container.value!==""){
+        if(builder.image.value!==""){
             command = command + " " + builder.image.value
         }
         this.setState({command:command})        
