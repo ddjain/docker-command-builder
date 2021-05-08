@@ -67,21 +67,25 @@ class Builder extends Component<BuilderProps,BuilderState> {
         if(builder.network.value!==""){
             command = command + " --network " + builder.network.value
         }
+
         if(builder.ports.length>0){
             for(let i=0;i<builder.ports.length;i++){
-                command = command + " -p \"" + builder.ports[i].key + "\":\"" +  builder.ports[i].value +"\""
+                if(builder.ports[i].key!=="" && builder.ports[i].value!=="")
+                    command = command + " -p \"" + builder.ports[i].key + "\":\"" +  builder.ports[i].value +"\""
             }
         }
 
         if(builder.enviornments.length>0){
             for(let i=0;i<builder.enviornments.length;i++){
-                command = command + " -e \"" + builder.enviornments[i].key + "\"=\"" +  builder.enviornments[i].value +"\""
+                if(builder.enviornments[i].key!=="" && builder.enviornments[i].value!=="")
+                    command = command + " -e \"" + builder.enviornments[i].key + "\"=\"" +  builder.enviornments[i].value +"\""
             }
         }
 
         if(builder.volumes.length>0){
             for(let i=0;i<builder.volumes.length;i++){
-                command = command + " -v \"" + builder.volumes[i].key + "\":\"" +  builder.volumes[i].value +"\""
+                if(builder.volumes[i].key!=="" && builder.volumes[i].value!=="")
+                    command = command + " -v \"" + builder.volumes[i].key + "\":\"" +  builder.volumes[i].value +"\""
             }
         }
 
@@ -124,14 +128,15 @@ class Builder extends Component<BuilderProps,BuilderState> {
                     </div>
                 </div>
                 <div className="row">
-                    <div className="col-sm-12 ">
+                    {command!==""?  command:""}
+                    {/* <div className="col-sm-12 ">
 
                     <div className="tooltip">{command!==""?  command:""}
                         <span className="tooltiptext">Click to copy</span>
                     </div>
 
                         <p className="tooltip Tooltip Text"></p>
-                    </div>
+                    </div> */}
                 </div>
 
             </div>
