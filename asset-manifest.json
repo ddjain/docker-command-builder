@@ -1,0 +1,22 @@
+{
+  "files": {
+    "main.css": "/docker-builder/static/css/main.54b215bf.chunk.css",
+    "main.js": "/docker-builder/static/js/main.aabcb1a0.chunk.js",
+    "main.js.map": "/docker-builder/static/js/main.aabcb1a0.chunk.js.map",
+    "runtime-main.js": "/docker-builder/static/js/runtime-main.4f8c09dc.js",
+    "runtime-main.js.map": "/docker-builder/static/js/runtime-main.4f8c09dc.js.map",
+    "static/js/2.5a0eadd8.chunk.js": "/docker-builder/static/js/2.5a0eadd8.chunk.js",
+    "static/js/2.5a0eadd8.chunk.js.map": "/docker-builder/static/js/2.5a0eadd8.chunk.js.map",
+    "static/js/3.30eccc13.chunk.js": "/docker-builder/static/js/3.30eccc13.chunk.js",
+    "static/js/3.30eccc13.chunk.js.map": "/docker-builder/static/js/3.30eccc13.chunk.js.map",
+    "index.html": "/docker-builder/index.html",
+    "static/css/main.54b215bf.chunk.css.map": "/docker-builder/static/css/main.54b215bf.chunk.css.map",
+    "static/js/2.5a0eadd8.chunk.js.LICENSE.txt": "/docker-builder/static/js/2.5a0eadd8.chunk.js.LICENSE.txt"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.4f8c09dc.js",
+    "static/js/2.5a0eadd8.chunk.js",
+    "static/css/main.54b215bf.chunk.css",
+    "static/js/main.aabcb1a0.chunk.js"
+  ]
+}
