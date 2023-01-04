@@ -16,19 +16,27 @@ interface BuilderProps {
 class Builder extends Component<BuilderProps,BuilderState> {
     constructor(props:any) {
         super(props);
+        let builder = this.createEmptyBuilder()
+        let localBuilder = localStorage.getItem("builder");
+        if(localBuilder) {
+          builder  = JSON.parse(localBuilder) as IBuilder
+        }
         this.state = {
             command:"",
-             builder: {
-                 image: {id:uuidv4(),key:"",value:""} as IPair,
-                 container: {id:uuidv4(),key:"",value:""} as IPair,
-                 network:{id:uuidv4(),key:"",value:""} as IPair,
-                 ports: [{id:uuidv4(),key:"",value:""} as IPair] as IPair[],
-                 volumes:[{id:uuidv4(),key:"",value:""} as IPair] as IPair[],
-                 enviornments:[{id:uuidv4(),key:"",value:""} as IPair] as IPair[],
-            } as IBuilder
+             builder: builder
         }
     }
 
+createEmptyBuilder = ()=>{
+  return {
+      image: {id:uuidv4(),key:"",value:""} as IPair,
+      container: {id:uuidv4(),key:"",value:""} as IPair,
+      network:{id:uuidv4(),key:"",value:""} as IPair,
+      ports: [{id:uuidv4(),key:"",value:""} as IPair] as IPair[],
+      volumes:[{id:uuidv4(),key:"",value:""} as IPair] as IPair[],
+      enviornments:[{id:uuidv4(),key:"",value:""} as IPair] as IPair[],
+ } as IBuilder
+}
     componentDidMount(){
         this.mixpanelInit()
     }
@@ -50,7 +58,6 @@ class Builder extends Component<BuilderProps,BuilderState> {
         );
     }
     onChangeHandler = (name:string,value:string)=>{
-        debugger
         let {builder}=this.state  
         _.set(builder, name, value)
         this.setState({builder:builder},()=>{
@@ -78,9 +85,17 @@ class Builder extends Component<BuilderProps,BuilderState> {
         this.setState({builder:builder})
       }
 
+      reset=()=>{
+        let builder = this.createEmptyBuilder()
+        this.setState( {builder: builder})
+        localStorage.removeItem("builder")
+      }
+
       getDockerBuildCommand=()=>{
-          debugger
         let {builder}=this.state
+        localStorage.setItem("builder",JSON.stringify(builder))
+
+
         let command="docker run"
         if(builder.container.value!==""){
             command = command + " --name " + builder.container.value
@@ -145,10 +160,13 @@ class Builder extends Component<BuilderProps,BuilderState> {
                 <br/>
 
                 <div className="row">
-                    <div className="col-sm-6"> 
+                    <div className="col-sm-3">
                          <button type="button" onClick={this.getDockerBuildCommand} className="btn btn-success">Generate</button>
                     </div>
-                    <div className="col-sm-6"> 
+                    <div className="col-sm-3">
+                         <button type="button" onClick={this.reset} className="btn btn-success">Reset</button>
+                    </div>
+                    <div className="col-sm-6">
                     </div>
                 </div>
                 <div className="row">
