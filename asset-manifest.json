@@ -1,8 +1,8 @@
 {
   "files": {
     "main.css": "/docker-command-builder/static/css/main.54b215bf.chunk.css",
-    "main.js": "/docker-command-builder/static/js/main.aabcb1a0.chunk.js",
-    "main.js.map": "/docker-command-builder/static/js/main.aabcb1a0.chunk.js.map",
+    "main.js": "/docker-command-builder/static/js/main.199d4c8a.chunk.js",
+    "main.js.map": "/docker-command-builder/static/js/main.199d4c8a.chunk.js.map",
     "runtime-main.js": "/docker-command-builder/static/js/runtime-main.7ac0634f.js",
     "runtime-main.js.map": "/docker-command-builder/static/js/runtime-main.7ac0634f.js.map",
     "static/js/2.5a0eadd8.chunk.js": "/docker-command-builder/static/js/2.5a0eadd8.chunk.js",
@@ -17,6 +17,6 @@
     "static/js/runtime-main.7ac0634f.js",
     "static/js/2.5a0eadd8.chunk.js",
     "static/css/main.54b215bf.chunk.css",
-    "static/js/main.aabcb1a0.chunk.js"
+    "static/js/main.199d4c8a.chunk.js"
   ]
 }
